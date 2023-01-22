@@ -15,20 +15,21 @@
   <body class="page">
     <header class="header page__header">
       <div class="header__logo"></div>
-      <div class="header__line"></div>
     </header>
     <main class="main page__main">
       <section class="profile">
         <div class="profile__avatar"></div>
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button hover"></button>
+          <div class="profile__header">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button hover" type="button"></button>
+          </div>
           <p class="profile__job">Исследователь океана</p>
         </div>
-        <button class="profile__add-button hover"></button>
+        <button class="profile__add-button hover" type="button"></button>
       </section>
       <section class="elements main__elements">
-        <div class="element">
+        <article class="element">
           <img
             src="./images/karachevsk.jpg"
             alt="Замок в Карачаевске"
@@ -36,16 +37,10 @@
           >
           <div class="element__info">
             <h2 class="element__title">Карачаевск</h2>
-            <label class="element__like-wrapper hover">
-              <input
-                class="element__like-checkbox"
-                type="checkbox"
-              >
-              <span class="element__like-icon"></span>
-            </label>
+            <button type="button" class="element__like-button hover"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             src="./images/elbrus.jpg"
             alt="Вид на гору Эльбрус"
@@ -53,16 +48,10 @@
           >
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <label class="element__like-wrapper hover">
-              <input
-                class="element__like-checkbox"
-                type="checkbox"
-              >
-              <span class="element__like-icon"></span>
-            </label>
+            <button type="button" class="element__like-button hover"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             src="./images/dombay.jpg"
             alt="Вид на гору в Домбае"
@@ -70,16 +59,10 @@
           >
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
-            <label class="element__like-wrapper hover">
-              <input
-                class="element__like-checkbox"
-                type="checkbox"
-              >
-              <span class="element__like-icon"></span>
-            </label>
+            <button type="button" class="element__like-button hover"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             src="./images/elbrus.jpg"
             alt="Вид на гору Эльбрус"
@@ -87,16 +70,10 @@
           >
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <label class="element__like-wrapper hover">
-              <input
-                class="element__like-checkbox"
-                type="checkbox"
-              >
-              <span class="element__like-icon"></span>
-            </label>
+            <button type="button" class="element__like-button hover"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             src="./images/dombay.jpg"
             alt="Вид на гору в Домбае"
@@ -104,16 +81,10 @@
           >
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
-            <label class="element__like-wrapper hover">
-              <input
-                class="element__like-checkbox"
-                type="checkbox"
-              >
-              <span class="element__like-icon"></span>
-            </label>
+            <button type="button" class="element__like-button hover"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img
             src="./images/karachevsk.jpg"
             alt="Замок в Карачаевске"
@@ -121,45 +92,38 @@
           >
           <div class="element__info">
             <h2 class="element__title">Карачаево-Черкесия</h2>
-            <label class="element__like-wrapper hover">
-              <input
-                class="element__like-checkbox"
-                type="checkbox"
-              >
-              <span class="element__like-icon"></span>
-            </label>
+            <button type="button" class="element__like-button hover"></button>
           </div>
-        </div>
+        </article>
       </section>
     </main>
-    <footer class="footer container page__footer">
+    <footer class="footer page__footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
     <section class="popup">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form">
+        <form  name="popupForm" class="popup__form">
           <input
             type="text"
-            id="nameInput"
-            class="popup__field"
+            name="nameInput"
+            class="popup__field popup__field_profile_name"
             required
           >
           <input
             type="text"
-            id="jobInput"
-            class="popup__field"
+            name="jobInput"
+            class="popup__field popup__field_profile_job"
             required
           >
-          <input
+          <button
             type="submit"
             class="popup__submit"
-            value="Сохранить"
-          >
-          <button class="popup__close-button hover"></button>
+          >Сохранить</button>
         </form>
+        <button type="button" class="popup__close-button hover"></button>
       </div>
     </section>
-    <script src="pages/index.js"></script>
+    <script src="scripts/index.js"></script>
   </body>
 </html>
