@@ -9,4 +9,4 @@
 
 Git, JavaScript, СSS, HTML, БЭМ.
 
-Сcылка на страницу в GitHub Pages: 
+Сcылка на страницу в GitHub Pages: https://arturshchekachpav.github.io/mesto/
