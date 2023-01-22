@@ -1,6 +1,11 @@
 ﻿.element__like-icon {
-  min-width: 22px;
+  display: inline-block;
+  background-image: url(../../../images/like-icon.svg);
+  width: 22px;
   height: 19px;
-  fill: #000;
-  /*margin-left: 30px;*/
+  vertical-align: middle;
+}
+
+.element__like-checkbox:checked + .element__like-icon {
+  background-image: url(../../../images/active-like-icon.svg);
 }

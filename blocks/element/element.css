@@ -2,6 +2,4 @@
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
-  display: grid;
-  grid-template-rows: auto 1fr;
 }

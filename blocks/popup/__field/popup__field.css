@@ -1,0 +1,21 @@
+.popup__field {
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  margin-bottom: 30px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 0 0 7px 0;
+}
+
+.popup__field:focus-visible {
+  outline: none;
+}
+
+.popup__field:nth-last-of-type(2) {
+  margin-bottom: 48px;
+}

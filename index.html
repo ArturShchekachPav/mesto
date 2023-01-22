@@ -2,7 +2,11 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    >
+    <title>Mesto</title>
     <link
       rel="stylesheet"
       href="./pages/index.css"
@@ -17,69 +21,113 @@
       <section class="profile">
         <div class="profile__avatar"></div>
         <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <svg class="profile__edit-button" viewBox="0 0 10 10"  xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 1.32827L2.60377 8.7666L1.28302 7.41936L8.66038 0L10 1.32827ZM0 10L1.96226 9.41177L0.584906 8.08349L0 10Z"/>
-          </svg>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button hover"></button>
+          <p class="profile__job">Исследователь океана</p>
         </div>
-        <svg class="profile__add-button"viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22 9.77778H12.2222V0H9.77778V9.77778H0V12.2222H9.77778V22H12.2222V12.2222H22V9.77778Z"/>
-        </svg>
+        <button class="profile__add-button hover"></button>
       </section>
       <section class="elements main__elements">
         <div class="element">
-          <img src="./images/karachevsk.jpg" alt="" class="element__image">
+          <img
+            src="./images/karachevsk.jpg"
+            alt="Замок в Карачаевске"
+            class="element__image"
+          >
           <div class="element__info">
             <h2 class="element__title">Карачаевск</h2>
-            <svg class="element__like-icon" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"/>
-            </svg>
+            <label class="element__like-wrapper hover">
+              <input
+                class="element__like-checkbox"
+                type="checkbox"
+              >
+              <span class="element__like-icon"></span>
+            </label>
           </div>
         </div>
         <div class="element">
-          <img src="./images/elbrus.jpg" alt="" class="element__image">
+          <img
+            src="./images/elbrus.jpg"
+            alt="Вид на гору Эльбрус"
+            class="element__image"
+          >
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <svg class="element__like-icon" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"/>
-            </svg>
+            <label class="element__like-wrapper hover">
+              <input
+                class="element__like-checkbox"
+                type="checkbox"
+              >
+              <span class="element__like-icon"></span>
+            </label>
           </div>
         </div>
         <div class="element">
-          <img src="./images/dombay.jpg" alt="" class="element__image">
+          <img
+            src="./images/dombay.jpg"
+            alt="Вид на гору в Домбае"
+            class="element__image"
+          >
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
-            <svg class="element__like-icon" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"/>
-            </svg>
+            <label class="element__like-wrapper hover">
+              <input
+                class="element__like-checkbox"
+                type="checkbox"
+              >
+              <span class="element__like-icon"></span>
+            </label>
           </div>
         </div>
         <div class="element">
-          <img src="./images/elbrus.jpg" alt="" class="element__image">
+          <img
+            src="./images/elbrus.jpg"
+            alt="Вид на гору Эльбрус"
+            class="element__image"
+          >
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <svg class="element__like-icon" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"/>
-            </svg>
+            <label class="element__like-wrapper hover">
+              <input
+                class="element__like-checkbox"
+                type="checkbox"
+              >
+              <span class="element__like-icon"></span>
+            </label>
           </div>
         </div>
         <div class="element">
-          <img src="./images/dombay.jpg" alt="" class="element__image">
+          <img
+            src="./images/dombay.jpg"
+            alt="Вид на гору в Домбае"
+            class="element__image"
+          >
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
-            <svg class="element__like-icon" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"/>
-            </svg>
+            <label class="element__like-wrapper hover">
+              <input
+                class="element__like-checkbox"
+                type="checkbox"
+              >
+              <span class="element__like-icon"></span>
+            </label>
           </div>
         </div>
         <div class="element">
-          <img src="./images/karachevsk.jpg" alt="" class="element__image">
+          <img
+            src="./images/karachevsk.jpg"
+            alt="Замок в Карачаевске"
+            class="element__image"
+          >
           <div class="element__info">
             <h2 class="element__title">Карачаево-Черкесия</h2>
-            <svg class="element__like-icon" viewBox="0 0 22 19" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20.2991 9.78586C22.567 7.54338 22.567 3.90213 20.2991 1.68186C18.0311 -0.560619 14.3486 -0.560619 12.0806 1.68186L10.9804 2.792L9.88007 1.70406C7.61215 -0.560619 3.92957 -0.560619 1.6841 1.68186C0.583822 2.76979 0 4.21297 0 5.74496C0 7.27695 0.606277 8.72013 1.6841 9.80806L10.9804 19L20.2991 9.78586ZM1.4371 5.74496C1.4371 4.59042 1.8862 3.52469 2.71702 2.72539C3.5703 1.88168 4.67058 1.45983 5.77086 1.45983C6.87114 1.45983 7.97142 1.88168 8.8247 2.72539L10.9804 4.83465L13.136 2.70318C14.8201 1.03798 17.582 1.03798 19.2437 2.70318C20.0521 3.50248 20.5236 4.56821 20.5236 5.72276C20.5236 6.8773 20.0745 7.94303 19.2437 8.74233L10.9804 16.9351L2.71702 8.76453C1.90865 7.94303 1.4371 6.8773 1.4371 5.74496Z"/>
-            </svg>
+            <label class="element__like-wrapper hover">
+              <input
+                class="element__like-checkbox"
+                type="checkbox"
+              >
+              <span class="element__like-icon"></span>
+            </label>
           </div>
         </div>
       </section>
@@ -87,5 +135,31 @@
     <footer class="footer container page__footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
+    <section class="popup">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form">
+          <input
+            type="text"
+            id="nameInput"
+            class="popup__field"
+            required
+          >
+          <input
+            type="text"
+            id="jobInput"
+            class="popup__field"
+            required
+          >
+          <input
+            type="submit"
+            class="popup__submit"
+            value="Сохранить"
+          >
+          <button class="popup__close-button hover"></button>
+        </form>
+      </div>
+    </section>
+    <script src="pages/index.js"></script>
   </body>
 </html>
