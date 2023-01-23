@@ -6,13 +6,6 @@
 
 @media screen and (max-width: 730px) {
   .profile {
-    flex-direction: column;
-    justify-content: center;
-  }
-}
-
-@media screen and (max-width: 730px) {
-  .profile {
-    gap: 0;
+    display: block;
   }
 }

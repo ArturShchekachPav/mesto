@@ -16,6 +16,12 @@
   outline: none;
 }
 
-.popup__field:nth-last-of-type(2) {
-  margin-bottom: 48px;
+.popup__field:nth-last-of-type(1) {
+  margin-bottom: 51px;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__field:nth-last-of-type(1) {
+    margin-bottom: 48px;
+  }
 }
