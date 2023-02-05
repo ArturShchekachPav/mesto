@@ -102,7 +102,7 @@ function handleFormSubmit(evt) {
   }
 
   if(evt.target.closest('.popup').classList.contains('popup__add-card')) {
-    sectionElements.append(createCard({name: titleInput.value, link: linkInput.value}));
+    sectionElements.prepend(createCard({name: titleInput.value, link: linkInput.value}));
   }
 
   closePopup(evt);
