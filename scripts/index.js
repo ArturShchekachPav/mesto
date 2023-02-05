@@ -6,7 +6,62 @@ let popup = document.querySelector('.popup');
 let closePopupButton = document.querySelector('.popup__close-button')
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__job');
-let likeButtons = document.querySelectorAll('.element__like-button');
+let sectionElements = document.querySelector('.elements');
+let templateCard = document.querySelector('.template-card').content.querySelector('.element');
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+function renderCards(items) {
+  const cards = items.map((item) => {
+    return createCard(item)
+  })
+
+  sectionElements.append(...cards)
+}
+
+function createCard(item) {
+  const card = templateCard.cloneNode(true);
+  card.querySelector('.element__title').textContent = item.name;
+  card.querySelector('.element__image').src = item.link;
+
+  card.querySelector('.element__like-button').addEventListener("click", putAlike);
+  card.querySelector('.element__delete-button').addEventListener('click', deleteCard);
+
+  return card;
+}
+
+function putAlike(evt) {
+  evt.target.classList.toggle('element__like-button_active');
+}
+
+function deleteCard(evt) {
+  evt.target.closest('.element').remove();
+}
 
 function openPopup() {
   popup.classList.add('popup_opened');
@@ -28,13 +83,8 @@ function handleFormSubmit(evt) {
   closePopup();
 }
 
-// function changeLikeStatus() {
-//   likeButton.classList.toggle('element__like-button_active')
-// }
+renderCards(initialCards);
 
 editProfileButton.addEventListener('click', openPopup);
 closePopupButton.addEventListener('click', closePopup);
 formElement.addEventListener('submit', handleFormSubmit);
-likeButtons.forEach(likeButton => {
-  likeButton.addEventListener("click", () => likeButton.classList.toggle('element__like-button_active'));
-});
