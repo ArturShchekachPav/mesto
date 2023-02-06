@@ -5,9 +5,9 @@ const titleInput = document.querySelector('.popup__field_card_title');
 const linkInput = document.querySelector('.popup__field_card_link');
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
-const popupEditProfile = document.querySelector('.popup__profile-edit');
-const popupAddCard = document.querySelector('.popup__add-card');
-const popupImage = document.querySelector('.popup_image');
+const popupEditProfile = document.querySelector('.popup_type_profile-edit');
+const popupAddCard = document.querySelector('.popup_type_add-card');
+const popupImage = document.querySelector('.popup_type_image');
 const closePopupButtons = document.querySelectorAll('.popup__close-button');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
@@ -119,11 +119,11 @@ function addNewCard() {
 function handleFormSubmit(evt) {
   evt.preventDefault();
 
-  if (evt.target.closest('.popup').classList.contains('popup__profile-edit')) {
+  if (evt.target.closest('.popup').classList.contains('popup_type_profile-edit')) {
     updateProfile();
   }
 
-  if (evt.target.closest('.popup').classList.contains('popup__add-card')) {
+  if (evt.target.closest('.popup').classList.contains('popup_type_add-card')) {
     addNewCard();
   }
 
