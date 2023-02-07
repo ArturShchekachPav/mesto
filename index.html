@@ -11,6 +11,8 @@
       rel="stylesheet"
       href="./pages/index.css"
     >
+    <script src="./scripts/constants.js" defer></script>
+    <script src="./scripts/index.js" defer></script>
   </head>
   <body class="page">
     <header class="header page__header">
@@ -23,6 +25,7 @@
           <div class="profile__header">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button
+              aria-label="Редактировать"
               class="profile__edit-button hover"
               type="button"
             ></button>
@@ -30,6 +33,7 @@
           <p class="profile__job">Исследователь океана</p>
         </div>
         <button
+          aria-label="Добавить"
           class="profile__add-button hover"
           type="button"
         ></button>
@@ -44,19 +48,21 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form
-          name="popupForm"
-          class="popup__form"
+          name="editProfileForm"
+          class="popup__form popup__form_edit-profile"
         >
           <input
             type="text"
             name="nameInput"
             class="popup__field popup__field_profile_name"
+            placeholder="Имя"
             required
           >
           <input
             type="text"
             name="jobInput"
             class="popup__field popup__field_profile_job"
+            placeholder="О себе"
             required
           >
           <button
@@ -66,6 +72,7 @@
           </button>
         </form>
         <button
+          aria-label="Закрыть"
           type="button"
           class="popup__close-button hover"
         ></button>
@@ -75,8 +82,8 @@
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
         <form
-          name="popupForm"
-          class="popup__form"
+          name="addCardForm"
+          class="popup__form popup__form_add-card"
         >
           <input
             type="text"
@@ -86,7 +93,7 @@
             required
           >
           <input
-            type="text"
+            type="url"
             name="linkInput"
             class="popup__field popup__field_card_link"
             placeholder="Ссылка на картинку"
@@ -99,6 +106,7 @@
           </button>
         </form>
         <button
+          aria-label="Закрыть"
           type="button"
           class="popup__close-button hover"
         ></button>
@@ -112,6 +120,7 @@
           alt=""
         >
         <button
+          aria-label="Закрыть"
           type="button"
           class="popup__close-button hover"
         ></button>
@@ -138,6 +147,5 @@
         ></button>
       </article>
     </template>
-    <script src="scripts/index.js"></script>
   </body>
 </html>
