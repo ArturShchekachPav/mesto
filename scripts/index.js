@@ -9,6 +9,7 @@ const addCardButton = document.querySelector('.profile__add-button');
 const popupEditProfile = document.querySelector('.popup_type_profile-edit');
 const popupAddCard = document.querySelector('.popup_type_add-card');
 const popupImage = document.querySelector('.popup_type_image');
+const popupImageElement = popupImage.querySelector('.popup__image');
 const closePopupButtons = document.querySelectorAll('.popup__close-button');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
@@ -38,7 +39,8 @@ function createCard(item) {
   card.querySelector('.element__like-button').addEventListener("click", putAlike);
   card.querySelector('.element__delete-button').addEventListener('click', deleteCard);
   cardImage.addEventListener('click', () => {
-    popupImage.querySelector('.popup__image').src = item.link;
+    popupImageElement.src = cardImage.src;
+    popupImageElement.alt = cardImage.alt;
     popupImage.querySelector('.popup__figcaption').textContent = item.name;
     openPopup(popupImage);
   })
