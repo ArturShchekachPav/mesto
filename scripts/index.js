@@ -88,6 +88,8 @@ function listenElementsClicks(evt, {deleteButtonClass, likeButtonClass, cardImag
 
 renderInitialCards(initialCards);
 
+fillProfilePopup(formEditProfile, profileData);
+
 editProfileButton.addEventListener('click', () => {
   fillProfilePopup(formEditProfile, profileData);
   openPopup(popupEditProfile);

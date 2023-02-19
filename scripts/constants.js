@@ -35,17 +35,17 @@ const formConfig = {
 }
 
 const cardConfig = {
-  likeButtonClass: 'element__like-button',
+  likeButtonClass  : 'element__like-button',
   deleteButtonClass: 'element__delete-button',
   cardImageSelector: '.element__image',
-  cardSelector: '.element',
+  cardSelector     : '.element',
   cardTitleSelector: '.element__title',
-  cardImageClass: 'element__image'
+  cardImageClass   : 'element__image'
 }
 
 const profileData = {
   profileName: document.querySelector('.profile__name'),
-  profileJob: document.querySelector('.profile__job')
+  profileJob : document.querySelector('.profile__job')
 }
 
 const formEditProfile = document.forms.editProfileForm;
