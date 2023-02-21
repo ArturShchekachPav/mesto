@@ -35,12 +35,11 @@ const formConfig = {
 }
 
 const cardConfig = {
-  likeButtonClass  : 'element__like-button',
-  deleteButtonClass: 'element__delete-button',
+  likeButtonSelector  : '.element__like-button',
+  deleteButtonSelector: '.element__delete-button',
   cardImageSelector: '.element__image',
   cardSelector     : '.element',
-  cardTitleSelector: '.element__title',
-  cardImageClass   : 'element__image'
+  cardTitleSelector: '.element__title'
 }
 
 const profileData = {

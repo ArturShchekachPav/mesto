@@ -12,18 +12,39 @@ function catchClosingClicks(evt) {
 
 function openPopup(popup) {
   document.addEventListener('keydown', catchEscape);
-  popup.addEventListener('click', catchClosingClicks);
+  popup.addEventListener('mousedown', catchClosingClicks);
 
   popup.classList.add('popup_opened');
 }
 
-function createCard({name, link}, {cardImageSelector, cardTitleSelector}) {
+function toggleLike(evt) {
+  evt.target.classList.toggle('element__like-button_active');
+}
+
+function deleteCard(evt) {
+  evt.target.closest('.element').remove();
+}
+
+function fillImagePopup({src, alt}, name) {
+  popupImageElement.src = src;
+  popupImageElement.alt = alt;
+  popupImage.querySelector('.popup__figcaption').textContent = name;
+}
+
+function createCard({name, link}, {cardImageSelector, cardTitleSelector, likeButtonSelector, deleteButtonSelector}) {
   const card = templateCard.cloneNode(true);
   const cardImage = card.querySelector(cardImageSelector);
 
   card.querySelector(cardTitleSelector).textContent = name;
   cardImage.src = link;
   cardImage.alt = `${name} (фотография)`;
+
+  card.querySelector(likeButtonSelector).addEventListener('click', toggleLike);
+  card.querySelector(deleteButtonSelector).addEventListener('click', deleteCard);
+  cardImage.addEventListener('click', () => {
+    fillImagePopup(cardImage, name);
+    openPopup(popupImage);
+  })
 
   return card;
 }
@@ -40,7 +61,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 
   document.removeEventListener('keydown', catchEscape);
-  popup.removeEventListener('click', catchClosingClicks);
+  popup.removeEventListener('mousedown', catchClosingClicks);
 }
 
 function handleFormSubmit(evt) {
@@ -57,34 +78,18 @@ function updateProfileData({nameInput, jobInput}, {profileJob, profileName}) {
   profileJob.textContent = jobInput.value;
 }
 
-function toggleLike(evt) {
-  evt.target.classList.toggle('element__like-button_active');
-}
-
-function deleteCard(evt) {
-  evt.target.closest('.element').remove();
-}
-
-function fillImagePopup({target}) {
-  const {src, alt} = target;
-  popupImageElement.src = src;
-  popupImageElement.alt = alt;
-  popupImage.querySelector('.popup__figcaption').textContent = target.closest('.element')
-    .querySelector('.element__title').textContent;
-}
-
-function listenElementsClicks(evt, {deleteButtonClass, likeButtonClass, cardImageClass}) {
-  if (evt.target.classList.contains(likeButtonClass)) {
-    toggleLike(evt);
-  }
-  if (evt.target.classList.contains(deleteButtonClass)) {
-    deleteCard(evt);
-  }
-  if (evt.target.classList.contains(cardImageClass)) {
-    fillImagePopup(evt);
-    openPopup(popupImage);
-  }
-}
+// function listenElementsClicks(evt, {deleteButtonClass, likeButtonClass, cardImageClass}) {
+//   if (evt.target.classList.contains(likeButtonClass)) {
+//     toggleLike(evt);
+//   }
+//   if (evt.target.classList.contains(deleteButtonClass)) {
+//     deleteCard(evt);
+//   }
+//   if (evt.target.classList.contains(cardImageClass)) {
+//     fillImagePopup(evt);
+//     openPopup(popupImage);
+//   }
+// }
 
 renderInitialCards(initialCards);
 
@@ -115,6 +120,6 @@ formAddCard.addEventListener('submit', (evt) => {
   evt.target.reset();
 });
 
-sectionElements.addEventListener('click', (evt) => {listenElementsClicks(evt, cardConfig)});
+// sectionElements.addEventListener('click', (evt) => {listenElementsClicks(evt, cardConfig)});
 
 enableValidation(formConfig);
