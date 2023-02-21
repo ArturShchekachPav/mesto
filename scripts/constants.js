@@ -37,9 +37,9 @@ const formConfig = {
 const cardConfig = {
   likeButtonSelector  : '.element__like-button',
   deleteButtonSelector: '.element__delete-button',
-  cardImageSelector: '.element__image',
-  cardSelector     : '.element',
-  cardTitleSelector: '.element__title'
+  cardImageSelector   : '.element__image',
+  cardSelector        : '.element',
+  cardTitleSelector   : '.element__title'
 }
 
 const profileData = {

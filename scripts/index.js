@@ -78,19 +78,6 @@ function updateProfileData({nameInput, jobInput}, {profileJob, profileName}) {
   profileJob.textContent = jobInput.value;
 }
 
-// function listenElementsClicks(evt, {deleteButtonClass, likeButtonClass, cardImageClass}) {
-//   if (evt.target.classList.contains(likeButtonClass)) {
-//     toggleLike(evt);
-//   }
-//   if (evt.target.classList.contains(deleteButtonClass)) {
-//     deleteCard(evt);
-//   }
-//   if (evt.target.classList.contains(cardImageClass)) {
-//     fillImagePopup(evt);
-//     openPopup(popupImage);
-//   }
-// }
-
 renderInitialCards(initialCards);
 
 fillProfilePopup(formEditProfile, profileData);
@@ -119,7 +106,5 @@ formAddCard.addEventListener('submit', (evt) => {
   sectionElements.prepend(createCard({name: titleInput.value, link: linkInput.value}, cardConfig));
   evt.target.reset();
 });
-
-// sectionElements.addEventListener('click', (evt) => {listenElementsClicks(evt, cardConfig)});
 
 enableValidation(formConfig);
