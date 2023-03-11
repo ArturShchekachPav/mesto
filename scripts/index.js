@@ -42,7 +42,8 @@ const cardConfig = {
   deleteButtonSelector: '.element__delete-button',
   cardImageSelector: '.element__image',
   cardSelector: '.element',
-  cardTitleSelector: '.element__title'
+  cardTitleSelector: '.element__title',
+  cardTemplateSelector: '.template-card'
 }
 
 const profileData = {
@@ -83,8 +84,8 @@ function openPopup(popup) {
 
 function renderInitialCards(items) {
   const cards = items.map((item) => {
-    const card = new Card(item, '.template-card', openPopup);
-    return card.createCard(cardConfig)
+    const card = new Card(item, openPopup, cardConfig);
+    return card.createCard();
   })
 
   sectionElements.append(...cards);
@@ -95,10 +96,6 @@ function closePopup(popup) {
 
   document.removeEventListener('keydown', catchEscape);
   popup.removeEventListener('mousedown', catchClosingClicks);
-}
-
-function handleFormSubmit(evt) {
-  evt.preventDefault();
 }
 
 function fillProfilePopup({nameInput, jobInput}, {profileJob, profileName}) {
@@ -131,22 +128,18 @@ editProfileButton.addEventListener('click', () => {
 addCardButton.addEventListener('click', () => openPopup(popupAddCard));
 
 formEditProfile.addEventListener('submit', (evt) => {
-  handleFormSubmit(evt);
-
   updateProfileData(evt.currentTarget, profileData);
   closePopup(popupEditProfile);
 })
 
 formAddCard.addEventListener('submit', (evt) => {
-  handleFormSubmit(evt);
-
   const {titleInput, linkInput} = evt.currentTarget;
 
   closePopup(popupAddCard);
 
-  const card = new Card({name: titleInput.value, link: linkInput.value}, '.template-card', openPopup);
+  const card = new Card({name: titleInput.value, link: linkInput.value}, openPopup, cardConfig);
 
-  sectionElements.prepend(card.createCard(cardConfig));
+  sectionElements.prepend(card.createCard());
   evt.target.reset();
 });
 

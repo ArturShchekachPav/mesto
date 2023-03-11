@@ -1,15 +1,15 @@
 import {popupImage, popupImageElement} from "./index.js";
 
 export default class Card {
-  constructor({name, link}, templateSelector, openPopup) {
+  constructor({name, link}, openPopup, cardConfig) {
     this._name = name;
     this._link = link;
-    this._templateSelector = templateSelector;
     this._handleOpenPopup = openPopup;
+    this._cardConfig = cardConfig;
   }
 
   _getTemplate() {
-    return document.querySelector(this._templateSelector).content.querySelector('.element').cloneNode(true);
+    return document.querySelector(this._cardConfig.cardTemplateSelector).content.querySelector('.element').cloneNode(true);
   }
 
   _fillImagePopup() {
@@ -26,24 +26,24 @@ export default class Card {
     evt.target.closest('.element').remove();
   }
 
-  _setEventListeners(card, cardImage, likeButtonSelector, deleteButtonSelector) {
-    card.querySelector(likeButtonSelector).addEventListener('click', (evt) => this._toggleLike(evt));
-    card.querySelector(deleteButtonSelector).addEventListener('click', (evt) => this._deleteCard(evt));
+  _setEventListeners(card, cardImage) {
+    card.querySelector(this._cardConfig.likeButtonSelector).addEventListener('click', (evt) => this._toggleLike(evt));
+    card.querySelector(this._cardConfig.deleteButtonSelector).addEventListener('click', (evt) => this._deleteCard(evt));
     cardImage.addEventListener('click', () => {
       this._fillImagePopup();
       this._handleOpenPopup(popupImage);
     })
   }
 
-  createCard({cardImageSelector, cardTitleSelector, likeButtonSelector, deleteButtonSelector}) {
+  createCard() {
     const card = this._getTemplate();
-    const cardImage = card.querySelector(cardImageSelector);
+    const cardImage = card.querySelector(this._cardConfig.cardImageSelector);
 
-    card.querySelector(cardTitleSelector).textContent = this._name;
+    card.querySelector(this._cardConfig.cardTitleSelector).textContent = this._name;
     cardImage.src = this._link;
     cardImage.alt = `${this._name} (фотография)`;
 
-    this._setEventListeners(card, cardImage, likeButtonSelector, deleteButtonSelector);
+    this._setEventListeners(card, cardImage);
 
     return card;
   }
