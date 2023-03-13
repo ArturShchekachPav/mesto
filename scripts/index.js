@@ -53,14 +53,20 @@ const profileData = {
 
 const formEditProfile = document.forms.editProfileForm;
 const formAddCard = document.forms.addCardForm;
-const formList = Array.from(document.querySelectorAll(formConfig.formSelector));
+
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 const popupEditProfile = document.querySelector('.popup_type_profile-edit');
 const popupAddCard = document.querySelector('.popup_type_add-card');
-export const popupImage = document.querySelector('.popup_type_image');
-export const popupImageElement = popupImage.querySelector('.popup__image');
+const popupImage = document.querySelector('.popup_type_image');
+const popupImageElement = popupImage.querySelector('.popup__image');
 const sectionElements = document.querySelector('.elements');
+
+const profileValidation = new FormValidator(formConfig, formEditProfile);
+const newCardValidation = new FormValidator(formConfig, formAddCard);
+
+profileValidation.enableValidation();
+newCardValidation.enableValidation();
 
 
 function catchEscape(evt) {
@@ -77,15 +83,18 @@ function catchClosingClicks(evt) {
 
 function openPopup(popup) {
   document.addEventListener('keydown', catchEscape);
-  popup.addEventListener('mousedown', catchClosingClicks);
 
   popup.classList.add('popup_opened');
 }
 
+function createCard(data) {
+  const card = new Card(data, openImagePopup, cardConfig);
+  return card.createCard();
+}
+
 function renderInitialCards(items) {
   const cards = items.map((item) => {
-    const card = new Card(item, openPopup, cardConfig);
-    return card.createCard();
+    return createCard(item);
   })
 
   sectionElements.append(...cards);
@@ -95,20 +104,11 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 
   document.removeEventListener('keydown', catchEscape);
-  popup.removeEventListener('mousedown', catchClosingClicks);
 }
 
 function fillProfilePopup({nameInput, jobInput}, {profileJob, profileName}) {
   jobInput.value = profileJob.textContent;
   nameInput.value = profileName.textContent;
-
-  const inputEvent = new InputEvent('input', {
-    bubbles: true,
-    cancelable: true,
-  });
-
-  jobInput.dispatchEvent(inputEvent);
-  nameInput.dispatchEvent(inputEvent);
 }
 
 function updateProfileData({nameInput, jobInput}, {profileJob, profileName}) {
@@ -116,35 +116,47 @@ function updateProfileData({nameInput, jobInput}, {profileJob, profileName}) {
   profileJob.textContent = jobInput.value;
 }
 
+function openImagePopup(link, name) {
+  popupImageElement.src = link;
+  popupImageElement.alt = name;
+  popupImage.querySelector('.popup__figcaption').textContent = name;
+
+  openPopup(popupImage);
+}
+
 renderInitialCards(initialCards);
+
+popupImage.addEventListener('mousedown', catchClosingClicks);
+popupEditProfile.addEventListener('mousedown', catchClosingClicks);
+popupAddCard.addEventListener('mousedown', catchClosingClicks);
 
 fillProfilePopup(formEditProfile, profileData);
 
 editProfileButton.addEventListener('click', () => {
   fillProfilePopup(formEditProfile, profileData);
+  profileValidation.resetValidation();
   openPopup(popupEditProfile);
 });
 
-addCardButton.addEventListener('click', () => openPopup(popupAddCard));
+addCardButton.addEventListener('click', () => {
+  newCardValidation.resetValidation();
+  openPopup(popupAddCard);
+});
 
 formEditProfile.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
   updateProfileData(evt.currentTarget, profileData);
   closePopup(popupEditProfile);
 })
 
 formAddCard.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+
   const {titleInput, linkInput} = evt.currentTarget;
 
   closePopup(popupAddCard);
 
-  const card = new Card({name: titleInput.value, link: linkInput.value}, openPopup, cardConfig);
-
-  sectionElements.prepend(card.createCard());
+  sectionElements.prepend(createCard({name: titleInput.value, link: linkInput.value}));
   evt.target.reset();
-});
-
-formList.forEach(formElement => {
-  const formValidator = new FormValidator(formConfig, formElement);
-
-  formValidator.enableValidation();
 });

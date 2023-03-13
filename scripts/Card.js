@@ -1,10 +1,8 @@
-import {popupImage, popupImageElement} from "./index.js";
-
 export default class Card {
-  constructor({name, link}, openPopup, cardConfig) {
+  constructor({name, link}, openImagePopup, cardConfig) {
     this._name = name;
     this._link = link;
-    this._handleOpenPopup = openPopup;
+    this._openImage = openImagePopup;
     this._cardConfig = cardConfig;
   }
 
@@ -12,39 +10,36 @@ export default class Card {
     return document.querySelector(this._cardConfig.cardTemplateSelector).content.querySelector('.element').cloneNode(true);
   }
 
-  _fillImagePopup() {
-    popupImageElement.src = this._link;
-    popupImageElement.alt = this._name;
-    popupImage.querySelector('.popup__figcaption').textContent = this._name;
+  _toggleLike() {
+    this._cardLikeButton.classList.toggle('element__like-button_active');
   }
 
-  _toggleLike(evt) {
-    evt.target.classList.toggle('element__like-button_active');
+  _deleteCard() {
+    this._cardDeleteButton.closest('.element').remove();
   }
 
-  _deleteCard(evt) {
-    evt.target.closest('.element').remove();
-  }
+  _setEventListeners() {
+    this._cardLikeButton = this._card.querySelector(this._cardConfig.likeButtonSelector);
+    this._cardLikeButton.addEventListener('click', () => this._toggleLike());
 
-  _setEventListeners(card, cardImage) {
-    card.querySelector(this._cardConfig.likeButtonSelector).addEventListener('click', (evt) => this._toggleLike(evt));
-    card.querySelector(this._cardConfig.deleteButtonSelector).addEventListener('click', (evt) => this._deleteCard(evt));
-    cardImage.addEventListener('click', () => {
-      this._fillImagePopup();
-      this._handleOpenPopup(popupImage);
+    this._cardDeleteButton = this._card.querySelector(this._cardConfig.deleteButtonSelector);
+    this._cardDeleteButton.addEventListener('click', () => this._deleteCard());
+
+    this._cardImage.addEventListener('click', () => {
+      this._openImage(this._link, this._name);
     })
   }
 
   createCard() {
-    const card = this._getTemplate();
-    const cardImage = card.querySelector(this._cardConfig.cardImageSelector);
+    this._card = this._getTemplate();
+    this._cardImage = this._card.querySelector(this._cardConfig.cardImageSelector);
 
-    card.querySelector(this._cardConfig.cardTitleSelector).textContent = this._name;
-    cardImage.src = this._link;
-    cardImage.alt = `${this._name} (фотография)`;
+    this._card.querySelector(this._cardConfig.cardTitleSelector).textContent = this._name;
+    this._cardImage.src = this._link;
+    this._cardImage.alt = `${this._name} (фотография)`;
 
-    this._setEventListeners(card, cardImage);
+    this._setEventListeners();
 
-    return card;
+    return this._card;
   }
 }
