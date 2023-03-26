@@ -14,7 +14,7 @@
 
 ### Технологии
 
-Git, JavaScript, СSS, HTML.
+Git, JavaScript, СSS, HTML, Webpack
 
 ### Концепции написания кода
 
