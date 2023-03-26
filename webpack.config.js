@@ -1,18 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 // подключите к проекту mini-css-extract-plugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: { main: './src/scripts/index.js' },
+  entry: {main: './src/pages/index.js'},
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
-        publicPath: ''
+    publicPath: ''
   },
-    mode: 'development',
+  mode: 'development',
   devtool: "source-map",
   devServer: {
     static: path.resolve(__dirname, './dist'),
@@ -40,10 +40,10 @@ module.exports = {
         // MiniCssExtractPlugin.loader и css-loader
         use: [MiniCssExtractPlugin.loader, {
           loader: 'css-loader',
-          options: { importLoaders: 1 }
+          options: {importLoaders: 1}
         },
-        'postcss-loader'
-      ]
+          'postcss-loader'
+        ]
       },
     ]
   },
@@ -52,7 +52,7 @@ module.exports = {
       template: './src/index.html',
       inject: 'body'
     }),
-        new CleanWebpackPlugin(),
-        new MiniCssExtractPlugin()
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin()
   ]
 };
