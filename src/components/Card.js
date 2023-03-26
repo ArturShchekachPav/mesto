@@ -1,8 +1,8 @@
 export default class Card {
-  constructor({name, link}, openImagePopup, cardConfig) {
+  constructor({name, link}, handleCardClick, cardConfig) {
     this._name = name;
     this._link = link;
-    this._openImage = openImagePopup;
+    this._openImage = handleCardClick;
     this._cardConfig = cardConfig;
   }
 
@@ -15,7 +15,8 @@ export default class Card {
   }
 
   _deleteCard() {
-    this._cardDeleteButton.closest('.element').remove();
+    this._card.remove();
+    this._card = null;
   }
 
   _setEventListeners() {
