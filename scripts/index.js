@@ -126,9 +126,9 @@ function openImagePopup(link, name) {
 
 renderInitialCards(initialCards);
 
-popupImage.addEventListener('mousedown', catchClosingClicks);
-popupEditProfile.addEventListener('mousedown', catchClosingClicks);
-popupAddCard.addEventListener('mousedown', catchClosingClicks);
+document.querySelectorAll('.popup').forEach( popup => {
+  popup.addEventListener('mousedown', catchClosingClicks);
+});
 
 fillProfilePopup(formEditProfile, profileData);
 
