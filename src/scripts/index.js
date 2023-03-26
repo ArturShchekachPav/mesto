@@ -2,6 +2,7 @@ import '../pages/index.css';
 
 import Card from './Card.js';
 import FormValidator from "./FormValidator.js";
+import Section from './Section.js';
 
 const initialCards = [
   {
@@ -62,13 +63,19 @@ const popupEditProfile = document.querySelector('.popup_type_profile-edit');
 const popupAddCard = document.querySelector('.popup_type_add-card');
 const popupImage = document.querySelector('.popup_type_image');
 const popupImageElement = popupImage.querySelector('.popup__image');
-const sectionElements = document.querySelector('.elements');
 
 const profileValidation = new FormValidator(formConfig, formEditProfile);
 const newCardValidation = new FormValidator(formConfig, formAddCard);
 
 profileValidation.enableValidation();
 newCardValidation.enableValidation();
+
+
+const cardsSection = new Section({items: initialCards, renderer: (item) => {
+    return createCard(item);
+  }}, '.elements');
+
+cardsSection.renderItems();
 
 
 function catchEscape(evt) {
@@ -94,14 +101,6 @@ function createCard(data) {
   return card.createCard();
 }
 
-function renderInitialCards(items) {
-  const cards = items.map((item) => {
-    return createCard(item);
-  })
-
-  sectionElements.append(...cards);
-}
-
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 
@@ -125,8 +124,6 @@ function openImagePopup(link, name) {
 
   openPopup(popupImage);
 }
-
-renderInitialCards(initialCards);
 
 document.querySelectorAll('.popup').forEach( popup => {
   popup.addEventListener('mousedown', catchClosingClicks);
@@ -159,6 +156,6 @@ formAddCard.addEventListener('submit', (evt) => {
 
   closePopup(popupAddCard);
 
-  sectionElements.prepend(createCard({name: titleInput.value, link: linkInput.value}));
+  cardsSection.addItem(createCard({name: titleInput.value, link: linkInput.value}));
   evt.target.reset();
 });
