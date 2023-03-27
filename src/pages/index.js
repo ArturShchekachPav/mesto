@@ -20,13 +20,13 @@ cardsSection.renderItems();
 const userInfo = new UserInfo('.profile__name', '.profile__job');
 
 const popupEditProfile = new PopupWithForm('.popup_type_profile-edit', (inputValues) => {
-  userInfo.setUserInfo({profileName: inputValues[0], profileDescription: inputValues[1]})
+  userInfo.setUserInfo(inputValues);
 });
 
 popupEditProfile.setEventListeners();
 
-const popupAddCard = new PopupWithForm('.popup_type_add-card', (inputValues) => {
-  cardsSection.addItem(createCard({name: inputValues[0], link: inputValues[1]}));
+const popupAddCard = new PopupWithForm('.popup_type_add-card', ({titleInput, linkInput}) => {
+  cardsSection.addItem(createCard({name: titleInput, link: linkInput}));
 })
 
 popupAddCard.setEventListeners();
@@ -44,8 +44,8 @@ newCardValidation.enableValidation();
 editProfileButton.addEventListener('click', () => {
   const {profileName, profileDescription} = userInfo.getUserInfo();
 
-  popupEditProfile.inputList[0].value = profileName;
-  popupEditProfile.inputList[1].value = profileDescription;
+  popupEditProfile.form.nameInput.value = profileName;
+  popupEditProfile.form.jobInput.value = profileDescription;
 
   profileValidation.resetValidation();
 
