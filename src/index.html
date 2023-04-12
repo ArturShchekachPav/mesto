@@ -14,7 +14,13 @@
     </header>
     <main class="main page__main">
       <section class="profile">
-        <div class="profile__avatar"></div>
+        <div class="profile__avatar-button">
+          <img
+            class="profile__avatar"
+            src=""
+            alt="Фото профиля"
+          >
+        </div>
         <div class="profile__info">
           <div class="profile__header">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -144,6 +150,59 @@
         <figcaption class="popup__figcaption"></figcaption>
       </figure>
     </section>
+    <section class="popup popup_type_delete-card">
+      <div class="popup__container">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form
+          name="deleteCardForm"
+          class="popup__form popup__form_delete-card"
+          novalidate
+        >
+          <button
+            type="submit"
+            class="popup__button"
+          >Да
+          </button>
+        </form>
+        <button
+          aria-label="Закрыть"
+          type="button"
+          class="popup__close-button hover"
+        ></button>
+      </div>
+    </section>
+    <section class="popup popup_type_edit-avatar">
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form
+          name="editAvatarForm"
+          class="popup__form popup__form_edit-avatar"
+          novalidate
+        >
+          <div class="popup__form-item">
+            <input
+              type="url"
+              name="avatarLinkInput"
+              id="avatar-link-input"
+              class="popup__input popup__input_avatar_link"
+              placeholder="Ссылка на картинку"
+              required
+            >
+            <span class="popup__error avatar-link-input-error"></span>
+          </div>
+          <button
+            type="submit"
+            class="popup__button"
+          >Сохранить
+          </button>
+        </form>
+        <button
+          aria-label="Закрыть"
+          type="button"
+          class="popup__close-button hover"
+        ></button>
+      </div>
+    </section>
     <template class="template-card">
       <article class="element">
         <img
@@ -153,15 +212,14 @@
         >
         <div class="element__info">
           <h2 class="element__title"></h2>
-          <button
-            type="button"
-            class="element__like-button hover"
-          ></button>
+          <div class="element__like-container">
+            <button
+              type="button"
+              class="element__like-button hover"
+            ></button>
+            <p class="element__like-count"></p>
+          </div>
         </div>
-        <button
-          type="button"
-          class="element__delete-button hover"
-        ></button>
       </article>
     </template>
   </body>
