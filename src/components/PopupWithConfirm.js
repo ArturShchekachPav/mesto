@@ -17,11 +17,11 @@ export default class PopupWithConfirm extends Popup {
 				evt.preventDefault();
 				
 				this._submit(this._data)
+					.then(() => {
+						this.close();
+					})
 					.catch(err => {
 						console.log(err);
-					})
-					.finally(() => {
-						this.close();
 					});
 			}
 		);

@@ -9,11 +9,10 @@ export default class PopupWithForm extends Popup {
 		this.form = this._popup.querySelector('.popup__form');
 		this.button = this.form.querySelector('.popup__button');
 		this.defaultButtonText = this.button.textContent;
+		this._inputList = this.form.querySelectorAll('.popup__input');
 	}
 	
 	_getInputValues() {
-		this._inputList = this.form.querySelectorAll('.popup__input');
-		
 		this._formValues = {};
 		
 		this._inputList.forEach(input => {
@@ -21,6 +20,13 @@ export default class PopupWithForm extends Popup {
 		});
 		
 		return this._formValues;
+	}
+	
+	
+	setInputValues(data) {
+		this._inputList.forEach((input) => {
+			input.value = data[input.name];
+		});
 	}
 	
 	_renderLoading(isLoading) {
@@ -44,12 +50,14 @@ export default class PopupWithForm extends Popup {
 					this._renderLoading,
 					this.button
 				)
+					.then(() => {
+						this.close();
+					})
 					.catch(err => {
 						console.log(err);
 					})
 					.finally(() => {
 						this._renderLoading(false);
-						this.close();
 					});
 			}
 		);
