@@ -29,32 +29,29 @@ const cardsSection = new Section(
 	'.elements'
 );
 
-api.getInitialCards()
-	.then(res => {
-		cardsSection.renderItems(res);
-	})
-	.catch(err => {
-		console.log(err);
-	});
-
 export const userInfo = new UserInfo('.profile__name',
 	'.profile__job',
 	'.profile__avatar'
 );
 
-api.getProfileData()
-	.then(({
+Promise.all([api.getInitialCards(),
+	api.getProfileData()
+])
+	.then(([cards, {
 		about,
 		avatar,
 		name,
 		_id
-	}) => {
+	}
+	]) => {
 		userInfo.setUserInfo({
 			nameInput: name,
 			jobInput: about
 		});
 		userInfo.getUserID(_id);
 		userInfo.setUserAvatar(avatar);
+		
+		cardsSection.renderItems(cards);
 	})
 	.catch(err => {
 		console.log(err);
@@ -143,8 +140,9 @@ editProfileButton.addEventListener('click',
 			profileDescription
 		} = userInfo.getUserInfo();
 		
-		popupEditProfile.form.nameInput.value = profileName;
-		popupEditProfile.form.jobInput.value = profileDescription;
+		// popupEditProfile.form.nameInput.value = profileName;
+		// popupEditProfile.form.jobInput.value = profileDescription;
+		popupEditProfile.setInputValues({nameInput: profileName, jobInput: profileDescription})
 		
 		profileValidation.resetValidation();
 		
@@ -160,5 +158,8 @@ addCardButton.addEventListener('click',
 );
 
 editAvatarButton.addEventListener('click',
-	() => popupEditAvatar.open()
+	() => {
+	editAvatarValidation.resetValidation();
+	popupEditAvatar.open()
+}
 );

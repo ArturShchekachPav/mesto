@@ -5,12 +5,14 @@ export default class MyCard extends Card {
 		handleCardClick,
 		cardConfig,
 		confirm,
-		api
+		api,
+		userInfo
 	) {
 		super(data,
 			handleCardClick,
 			cardConfig,
-			api
+			api,
+			userInfo
 		);
 		this._confirm = confirm;
 	}

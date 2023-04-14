@@ -1,5 +1,3 @@
-import {userInfo} from '../pages';
-
 export default class Card {
 	constructor({
 			name,
@@ -9,7 +7,8 @@ export default class Card {
 		},
 		handleCardClick,
 		cardConfig,
-		api
+		api,
+		{profileId}
 	) {
 		this._id = _id;
 		this._name = name;
@@ -18,8 +17,12 @@ export default class Card {
 		this._cardConfig = cardConfig;
 		this._likes = likes;
 		this._likeStatus = false;
-		this._putLikeOnServer = api.addCardLike;
-		this._deleteLikeOnServer = api.removeCardLike;
+		this._api = api;
+		this._profileId = profileId;
+		this._card = this._getTemplate();
+		this._cardImage = this._card.querySelector(this._cardConfig.cardImageSelector);
+		this._likeCounter = this._card.querySelector(this._cardConfig.cardLikeCounterSelector);
+		this._cardLikeButton = this._card.querySelector(this._cardConfig.likeButtonSelector);
 	}
 	
 	_getTemplate() {
@@ -31,7 +34,7 @@ export default class Card {
 	}
 	
 	_checkLikeStatus(likes) {
-		return likes.some(like => like._id === userInfo.profileId);
+		return likes.some(like => like._id === this._profileId);
 	}
 	
 	_setLikeStatus() {
@@ -59,7 +62,7 @@ export default class Card {
 	}
 	
 	_likeCard() {
-		this._putLikeOnServer(this._id)
+		this._api.addCardLike(this._id)
 			.then(res => {
 				if (this._checkLikeStatus(res.likes)) {
 					this._setLikeActive();
@@ -69,7 +72,7 @@ export default class Card {
 	}
 	
 	_unlikeCard() {
-		this._deleteLikeOnServer(this._id)
+		this._api.removeCardLike(this._id)
 			.then(res => {
 				if (!this._checkLikeStatus(res.likes)) {
 					this._setLikeInactive();
@@ -79,7 +82,6 @@ export default class Card {
 	}
 	
 	_setEventListeners() {
-		this._cardLikeButton = this._card.querySelector(this._cardConfig.likeButtonSelector);
 		this._cardLikeButton.addEventListener('click',
 			() => this._toggleLikeStatus()
 		);
@@ -94,10 +96,6 @@ export default class Card {
 	}
 	
 	createCard() {
-		this._card = this._getTemplate();
-		this._cardImage = this._card.querySelector(this._cardConfig.cardImageSelector);
-		this._likeCounter = this._card.querySelector(this._cardConfig.cardLikeCounterSelector);
-		
 		this._card.querySelector(this._cardConfig.cardTitleSelector).textContent = this._name;
 		this._cardImage.src = this._link;
 		this._cardImage.alt = `${this._name} (фотография)`;

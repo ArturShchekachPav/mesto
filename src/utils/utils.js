@@ -18,7 +18,8 @@ export function createCard(data) {
 			),
 			cardConfig,
 			(cardData) => {popupConfimation.open(cardData);},
-			api
+			api,
+			userInfo
 		) :
 		new Card(data,
 			(src,
@@ -27,7 +28,8 @@ export function createCard(data) {
 				name
 			),
 			cardConfig,
-			api
+			api,
+			userInfo
 		);
 	return card.createCard();
 }
